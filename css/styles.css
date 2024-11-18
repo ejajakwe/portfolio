@@ -1,0 +1,97 @@
+body.dark-theme {
+    background-color: #121212;
+    /* background-image: url("background.jpg"); */
+    background-size: cover;
+    color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+}
+
+header h1 {
+    margin: 0.5rem 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #4fc3f7;
+}
+
+.intro,
+.about,
+.skills,
+.portfolio {
+    padding: 2rem;
+}
+
+.about h2 {
+    text-align: center;
+}
+
+.skill h2 {
+    text-align: center;
+}
+
+.skills {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.skills li {
+    list-style-type: none;
+}
+
+.portfolio {
+    text-align: center;
+}
+
+.contact {
+    text-align: center;
+    padding: 2rem;
+}
+
+.contact h2 {
+    margin-bottom: 1rem;
+}
+
+.contact p {
+    margin: 0.5rem 0;
+}
+
+.social-media a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #333;
+    color: #4fc3f7;
+    text-decoration: none;
+}
+
+.social-media a:hover {
+    background-color: #4fc3f7;
+    color: #121212;
+}
