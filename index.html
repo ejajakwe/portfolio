@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eja Sapario — Portfolio & Freelance</title>
+    <meta name="description"
+        content="Professional freelance portfolio: web development, UI/UX, mobile, and automation. Showcases projects, services, skills, testimonials, and quick contact." />
+    <meta name="author" content="Your Name" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Your Name — Portfolio & Freelance" />
+    <meta property="og:description"
+        content="Hire me for Web/App/Automation. See projects, services, skills, and contact." />
+    <meta property="og:image" content="https://picsum.photos/1200/630?grayscale&blur=0" />
+    <meta property="og:url" content="https://your-domain.example" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon (SVG data URI) -->
+    <link rel="icon"
+        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%230ea5e9"/><stop offset="1" stop-color="%237155f7"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(%23g)"/><path d="M25 65 L45 30 L55 50 L75 30" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>' />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b1220;
+            --panel: #0f172a;
+            --panel-2: #0b132a;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --brand: #0ea5e9;
+            /* sky-500 */
+            --brand-2: #7c3aed;
+            /* violet-600 */
+            --ok: #22c55e;
+            --warn: #f59e0b;
+            --danger: #ef4444;
+            --ring: 0 0 0 8px rgba(14, 165, 233, .15);
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(2, 8, 23, .35), 0 2px 6px rgba(2, 8, 23, .4);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f8fafc;
+                --panel: #ffffff;
+                --panel-2: #f1f5f9;
+                --text: #0f172a;
+                --muted: #475569;
+                --shadow: 0 10px 30px rgba(2, 8, 23, .08), 0 2px 6px rgba(2, 8, 23, .06);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+            color: var(--text);
+            background: radial-gradient(1300px 800px at 80% -10%, rgba(124, 58, 237, .25), transparent 60%), radial-gradient(800px 500px at 0% 0%, rgba(14, 165, 233, .25), transparent 60%), var(--bg);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        .container {
+            width: min(1120px, 92vw);
+            margin: 0 auto
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: white;
+            padding: .85rem 1.1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            box-shadow: var(--shadow);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border-color: rgba(148, 163, 184, .35);
+            color: var(--text)
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, .15);
+            color: var(--muted);
+            font-weight: 600;
+            font-size: .85rem
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(to bottom, rgba(11, 18, 32, .8), rgba(11, 18, 32, .35));
+            border-bottom: 1px solid rgba(148, 163, 184, .12)
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 0
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            font-family: 'Plus Jakarta Sans', Inter;
+            font-weight: 800;
+            letter-spacing: .2px
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: grid;
+            place-items: center;
+            box-shadow: var(--shadow)
+        }
+
+        .brand-logo svg {
+            width: 24px;
+            height: 24px;
+            color: white
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap
+        }
+
+        .nav-links a {
+            padding: .55rem .85rem;
+            border-radius: 10px
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            background: rgba(148, 163, 184, .16)
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: .6rem
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 4rem 0 2rem
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 2.2rem + 2vw, 3.4rem);
+            line-height: 1.05;
+            margin: .5rem 0 1rem;
+            font-family: 'Plus Jakarta Sans', Inter;
+            letter-spacing: .3px
+        }
+
+        .lead {
+            font-size: clamp(1rem, .8rem + .5vw, 1.15rem);
+            color: var(--muted);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: .8rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem
+        }
+
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0));
+            border: 1px solid rgba(148, 163, 184, .15);
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow)
+        }
+
+        /* Sections */
+        section {
+            padding: 3.5rem 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+            font-family: 'Plus Jakarta Sans';
+        }
+
+        .grid {
+            display: grid;
+            gap: 1rem
+        }
+
+        .grid.cols-3 {
+            grid-template-columns: repeat(3, 1fr)
+        }
+
+        .grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: .75rem 1rem;
+            border: 1px solid rgba(148, 163, 184, .16);
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0))
+        }
+
+        .meter {
+            height: 8px;
+            background: rgba(148, 163, 184, .2);
+            border-radius: 999px;
+            overflow: hidden
+        }
+
+        .meter>span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand), var(--brand-2));
+        }
+
+        .service {
+            padding: 1.1rem;
+            border: 1px solid rgba(148, 163, 184, .16);
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0));
+            display: grid;
+            gap: .5rem
+        }
+
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem
+        }
+
+        .project {
+            position: relative;
+            border: 1px solid rgba(148, 163, 184, .16);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--panel)
+        }
+
+        .project figure {
+            aspect-ratio: 16/10;
+            overflow: hidden
+        }
+
+        .project img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease
+        }
+
+        .project:hover img {
+            transform: scale(1.05)
+        }
+
+        .project .p-body {
+            padding: 1rem
+        }
+
+        .p-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 0;
+            padding-left: 1rem
+        }
+
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--brand), transparent)
+        }
+
+        .tl-item {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem
+        }
+
+        .tl-item:before {
+            content: "";
+            position: absolute;
+            left: .2rem;
+            top: .55rem;
+            width: .8rem;
+            height: .8rem;
+            background: var(--panel-2);
+            border: 2px solid var(--brand);
+            border-radius: 999px
+        }
+
+        /* Testimonials */
+        .testi-wrap {
+            position: relative
+        }
+
+        .testi {
+            display: none;
+            padding: 1.1rem;
+            border: 1px solid rgba(148, 163, 184, .16);
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0));
+        }
+
+        .testi.active {
+            display: block
+        }
+
+        /* Contact */
+        form {
+            display: grid;
+            gap: .8rem
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: .9rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, .25);
+            background: rgba(2, 8, 23, .35);
+            color: var(--text)
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            box-shadow: var(--ring);
+            border-color: var(--brand)
+        }
+
+        footer {
+            padding: 2.5rem 0;
+            color: var(--muted)
+        }
+
+        /* Utilities */
+        .row {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .right {
+            margin-left: auto
+        }
+
+        .hide {
+            display: none
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cards {
+                grid-template-columns: 1fr
+            }
+
+            .grid.cols-3 {
+                grid-template-columns: 1fr
+            }
+
+            .grid.cols-2 {
+                grid-template-columns: 1fr
+            }
+
+            .portfolio {
+                grid-template-columns: 1fr
+            }
+
+            nav .nav-links {
+                display: none
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eja Sapario",
+    "url": "https://your-domain.example",
+    "jobTitle": "Full‑Stack Developer",
+    "email": "mailto:ejajakwe@gmail.com",
+    "telephone": "+62-896-9430-9642",
+    "sameAs": [
+      "https://github.com/ejajakwe",
+      "https://www.linkedin.com/in/ejasapario/",
+      "https://dribbble.com/ejasapario"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav aria-label="Primary">
+                <div class="brand">
+                    <span class="brand-logo" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12l7-9 7 9-7 9-7-9z" />
+                        </svg>
+                    </span>
+                    <a href="#home" aria-current="page">Eja Sapario</a>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="actions">
+                    <button class="btn secondary" id="themeToggle" aria-label="Toggle theme">🌗</button>
+                    <a class="btn" href="#contact">Hire Me</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home" class="container">
+        <section class="hero" aria-labelledby="hero-title">
+            <div>
+                <div class="row" role="list" aria-label="Quick status">
+                    <span class="tag" role="listitem">Open for freelance</span>
+                    <span class="tag" role="listitem">Replies within 1h</span>
+                    <span class="tag" role="listitem">Remote</span>
+                </div>
+                <h1 id="hero-title">I'm <span
+                        style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Eja
+                        Sapario</span> — Web Developer & Freelancer.
+                </h1>
+                <p class="lead">I help businesses and individuals build fast, secure, and beautiful websites. Focused on
+                    performance, and accessibility.
+                </p>
+                <div class="hero-cta">
+                    <a class="btn" href="#portfolio">View Work</a>
+                    <a class="btn secondary" href="https://wa.me/6289694309642" target="_blank">WhatsApp Me</a>
+                    <!-- <a class="btn secondary" href="assets/CV.pdf" download>Download CV</a>  -->
+                </div>
+            </div>
+            <div class="hero-cards">
+                <div class="card">
+                    <div class="row"><strong>At a Glance</strong><span class="right tag">2+ yrs</span></div>
+                    <ul class="muted" style="margin:.6rem 0 0; padding-left:1rem; line-height:1.8">
+                        <li>Full‑Stack (Javascript/React, Node.js, Laravel)</li>
+                        <li>Typing/Writing</li>
+                        <li>Prompt Engineering</li>
+                        <li>SEO & Analytics</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="row"><strong>Contact</strong><span class="right tag">Replies 1h</span></div>
+                    <div style="margin-top:.6rem" class="row">
+                        <a class="btn secondary" href="https://wa.me/6289694309642" target="_blank" rel="noopener"
+                            aria-label="WhatsApp">WhatsApp</a>
+                        <a class="btn secondary" href="https://www.linkedin.com/in/ejasapario/" target="_blank"
+                            rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+                        <a class="btn secondary" href="#" target="_blank" rel="noopener" aria-label="Fiverr">Fiverr</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" aria-labelledby="about-title">
+            <div class="section-title">
+                <h2 id="about-title">About Me</h2>
+                <span class="muted">Location: Pontianak, Indonesia • Languages: EN, ID</span>
+            </div>
+            <div class="grid cols-2">
+                <div class="card" style="min-height:260px; display:grid; place-items:center; text-align:center">
+                    <div
+                        style="width:160px; height:160px; border-radius:32px; background: radial-gradient(60% 60% at 30% 30%, rgba(14,165,233,.7), transparent), radial-gradient(60% 60% at 70% 70%, rgba(124,58,237,.7), transparent), url('assets/Profile.jpg'); background-size: cover; background-position:center; box-shadow: var(--shadow)">
+                    </div>
+                    <!-- <p class="muted" style="margin-top:.75rem">(Replace with your own photo URL or file)</p> -->
+                </div>
+                <div class="card">
+                    <p>A business owner and IT enthusiast who recently graduated from
+                        college with various skills learned at university, such as web/app
+                        development, information security systems, graphic design and 2D
+                        animation.</p>
+                    <div class="grid" style="grid-template-columns:repeat(2,1fr); gap:.6rem; margin-top:1rem">
+                        <div class="tag">Email: ejajakwe@gmail.com</div>
+                        <div class="tag">WhatsApp: +62 896 9430 9642</div>
+                        <div class="tag">Freelance: <strong style="color:var(--ok)">Available</strong></div>
+                        <div class="tag">Rate: Open to discuss</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" aria-labelledby="skills-title">
+            <div class="section-title">
+                <h2 id="skills-title">Skills</h2>
+                <span class="muted">Primary stack & tools</span>
+            </div>
+            <div class="grid cols-2">
+                <div class="card">
+                    <div class="skill"><span>HTML/CSS</span><span class="muted">Advanced</span></div>
+                    <div class="meter" aria-hidden="true"><span style="width:85%"></span></div>
+                    <div class="skill"><span>JavaScript/TypeScript</span><span class="muted">Intermediate</span></div>
+                    <div class="meter"><span style="width:70%"></span></div>
+                    <div class="skill"><span>React</span><span class="muted">Intermediate</span></div>
+                    <div class="meter"><span style="width:65%"></span></div>
+                </div>
+                <div class="card">
+                    <div class="skill"><span>Node.js/Express</span><span class="muted">Intermediate</span></div>
+                    <div class="meter"><span style="width:70%"></span></div>
+                    <div class="skill"><span>Laravel/PHP</span><span class="muted">Intermediate</span></div>
+                    <div class="meter"><span style="width:70%"></span></div>
+                    <div class="skill"><span>Typing/Writing</span><span class="muted">Advanced</span></div>
+                    <div class="meter"><span style="width:85%"></span></div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:1rem">
+                <span class="tag">Git & GitHub</span>
+                <span class="tag"> MySQL / Firebase</span>
+                <span class="tag">Midtrans</span>
+                <span class="tag">REST API</span>
+                <span class="tag">SEO</span>
+                <span class="tag">Google Cloud</span>
+                <span class="tag">Prompt Engineer</span>
+            </div>
+        </section>
+
+        <section id="services" aria-labelledby="services-title">
+            <div class="section-title">
+                <h2 id="services-title">Services</h2>
+                <a class="btn secondary" href="#contact">Discuss your project</a>
+            </div>
+            <div class="grid cols-3">
+                <div class="service">
+                    <h3>Web Apps & Websites</h3>
+                    <p class="muted">Landing pages, company profiles, admin dashboards, ecommerce & etc.</p>
+                    <div class="row"><span class="tag">From $150</span><span class="tag">2‑4 weeks</span></div>
+                </div>
+                <div class="service">
+                    <h3>Writing & Typing</h3>
+                    <p class="muted">Articles, scriptwriting, book & e-book writing, product description, translation,
+                        resume & etc.</p>
+                    <div class="row"><span class="tag">From $9.99</span><span class="tag">≈1 hour</span></div>
+                </div>
+                <div class="service">
+                    <h3>Graphic Design</h3>
+                    <p class="muted">Enhance, restore, custom, combine, rezise, ai photo & etc.</p>
+                    <div class="row"><span class="tag">From $9.99</span><span class="tag">≈1 hour</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" aria-labelledby="portfolio-title">
+            <div class="section-title">
+                <h2 id="portfolio-title">Portfolio</h2>
+                <div class="row" role="tablist" aria-label="Project filters">
+                    <button class="btn secondary" data-filter="all" role="tab" aria-selected="true">All</button>
+                    <button class="btn secondary" data-filter="web" role="tab">Web</button>
+                    <button class="btn secondary" data-filter="uiux" role="tab">Design</button>
+                    <button class="btn secondary" data-filter="ecom" role="tab">App</button>
+                </div>
+            </div>
+            <div class="portfolio" id="portfolioGrid">
+                <!-- Project Card -->
+                <article class="project" data-tags="web ecom">
+                    <figure>
+                        <img src="assets/Syncpedia.png" alt="Modern ecommerce dashboard" loading="lazy" />
+                    </figure>
+                    <div class="p-body">
+                        <h3>Syncpedia Website</h3>
+                        <p class="muted">Website for SMEs: products, orders, Midtrans payments, reports.</p>
+                        <div class="row">
+                            <div class="p-tags">
+                                <span class="tag">React</span><span class="tag">MySQL</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">Midtrans</span>
+                            </div>
+                            <!-- <a class="btn right secondary" href="#" aria-label="Live demo">Live</a>
+                            <a class="btn secondary" href="#" aria-label="Code">Code</a> -->
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project" data-tags="web uiux">
+                    <figure>
+                        <img src="assets/CaloCare.png" alt="SaaS landing page" loading="lazy" />
+                    </figure>
+                    <div class="p-body">
+                        <h3>CaloCare App</h3>
+                        <p class="muted">CaloCare is an innovative app designed to help users achieve healthier eating
+                            habits by making nutrition information accessible and actionable.</p>
+                        <div class="row">
+                            <div class="p-tags"><span class="tag">Javascript</span>
+                                <span class="tag">Kotlin</span>
+                                <span class="tag">Google Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project" data-tags="uiux">
+                    <figure>
+                        <img src="assets/Ai.png" alt="Mobile fintech UI" loading="lazy" />
+                    </figure>
+                    <div class="p-body">
+                        <h3>AI PHOTO</h3>
+                        <p class="muted">Photo with Lionel Messi made by Gemini AI.</p>
+                        <div class="row">
+                            <div class="p-tags"><span class="tag">Gemini</span><span class="tag">Photoshop</span>
+                            </div>
+                            <!-- <a class="btn right secondary" href="#">Case study</a> -->
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" aria-labelledby="exp-title">
+            <div class="section-title">
+                <h2 id="exp-title">Experience & Education</h2>
+            </div>
+            <div class="grid cols-2">
+                <div class="card">
+                    <h3>Work</h3>
+                    <div class="timeline">
+                        <div class="tl-item"><strong>Business Owner</strong> — Mar 2022 – Present <div class="muted">
+                                Syncpedia</div>
+                        </div>
+                        <div class="tl-item"><strong>Marketing Agent</strong> — Oct 2025 - Present <div class="muted">OC
+                                Property</div>
+                        </div>
+                        <div class="tl-item"><strong>Cloud Computing Cohort</strong> — Sep 2024 – Jan 2025 <div
+                                class="muted">
+                                Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</div>
+                        </div>
+                        <div class="tl-item"><strong>Internship</strong> — Aug 2021 – Nov 2021 <div class="muted">
+                                DX PLATINUM KREASI</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Education & Certifications</h3>
+                    <div class="timeline">
+                        <div class="tl-item"><strong>Informatics Engineering</strong> — 2025 <div class="muted">
+                                Pontianak State Polytechnic</div>
+                        </div>
+                        <div class="tl-item"><strong>Cloud Computing</strong> — 2025 <div class="muted">Bangkit Academy
+                                led by Google, Tokopedia, Gojek, & Traveloka</div>
+                        </div>
+                        <div class="tl-item"><strong>Belajar Penerapan Machine Learning dengan Google Cloud</strong> —
+                            2024 <div class="muted">Dicoding Indonesia</div>
+                        </div>
+                        <div class="tl-item"><strong>Belajar Dasar AI</strong> —
+                            2024 <div class="muted">Dicoding Indonesia</div>
+                        </div>
+                        <div class="tl-item"><strong>Belajar Membuat Aplikasi Back-End untuk Pemula dengan Google
+                                Cloud</strong> —
+                            2024 <div class="muted">Dicoding Indonesia</div>
+                        </div>
+                        <div class="tl-item"><strong>
+                                Menjadi Google Cloud Engineer</strong> —
+                            2024 <div class="muted">Dicoding Indonesia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="testimonials" aria-labelledby="testi-title">
+            <div class="section-title">
+                <h2 id="testi-title">Testimonials</h2>
+                <div class="row">
+                    <button class="btn secondary" id="prevTesti" aria-label="Previous">◀</button>
+                    <button class="btn secondary" id="nextTesti" aria-label="Next">▶</button>
+                </div>
+            </div>
+            <div class="testi-wrap">
+                <blockquote class="testi active" id="t1">“Project delivered on time and tidy. Communicative and
+                    proactive.” — <strong>Ani, SME Owner</strong></blockquote>
+                <blockquote class="testi" id="t2">“Excellent performance; all SEO best practices applied.” —
+                    <strong>Rudi, Startup CTO</strong>
+                </blockquote>
+                <blockquote class="testi" id="t3">“Elegant design—our users are happy.” — <strong>Maya, Product
+                        Manager</strong></blockquote>
+            </div>
+        </section> -->
+
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="section-title">
+                <h2 id="contact-title">Contact & Quote</h2>
+                <span class="muted">Typical response: 0‑12 hours</span>
+            </div>
+            <div class="grid cols-2">
+                <div class="card">
+                    <form id="contactForm" novalidate>
+                        <label>Name
+                            <input type="text" name="name" placeholder="Full name" required />
+                        </label>
+                        <label>Email
+                            <input type="email" name="email" placeholder="you@domain.com" required />
+                        </label>
+                        <label>Project type
+                            <select name="type" required>
+                                <option value="">Choose...</option>
+                                <option>Website / Landing</option>
+                                <option>Web App</option>
+                                <option>UI/UX</option>
+                                <option>Payment Integration</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                        <label>Message
+                            <textarea name="message" rows="5" placeholder="Describe your needs briefly"
+                                required></textarea>
+                        </label>
+                        <div class="row">
+                            <button class="btn" type="submit">Send</button>
+                            <span id="formMsg" class="muted" role="status" aria-live="polite"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Prefer fast chat?</h3>
+                    <p class="muted">Reach out via WhatsApp or email. Include timeline & budget so I can advise the best
+                        approach.</p>
+                    <div class="row" style="margin-top:.5rem">
+                        <a class="btn secondary" href="https://wa.me/6289694309642" target="_blank"
+                            rel="noopener">WhatsApp</a>
+                        <a class="btn secondary" href="https://www.linkedin.com/in/ejasapario/">LinkedIn</a>
+                        <a class="btn secondary" href="https://www.linkedin.com/in/ejasapario/">Fiverr</a>
+                    </div>
+                    <!-- <hr style="border:0; border-top:1px solid rgba(148,163,184,.18); margin:1rem 0">
+                    <h4>Supporting docs</h4>
+                    <ul class="muted" style="margin:.4rem 0 0; padding-left:1rem; line-height:1.8">
+                        <li><a href="assets/Resume.pdf" download>CV (PDF)</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container row">
+            <div>© <span id="year"></span> Eja Sapario. All rights reserved.</div>
+            <div class="right">Built with HTML • CSS • JS</div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Theme toggle =====
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        const KEY = 'prefers-light';
+        const setLight = (v) => {
+            if (v) {
+                root.style.setProperty('--bg', '#f8fafc');
+                root.style.setProperty('--panel', '#ffffff');
+                root.style.setProperty('--panel-2', '#f1f5f9');
+                root.style.setProperty('--text', '#0f172a');
+                root.style.setProperty('--muted', '#475569');
+                root.style.setProperty('--shadow', '0 10px 30px rgba(2,8,23,.08), 0 2px 6px rgba(2,8,23,.06)');
+            } else {
+                root.style.removeProperty('--bg');
+                root.style.removeProperty('--panel');
+                root.style.removeProperty('--panel-2');
+                root.style.removeProperty('--text');
+                root.style.removeProperty('--muted');
+                root.style.removeProperty('--shadow');
+            }
+            localStorage.setItem(KEY, v ? '1' : '');
+        }
+        themeToggle.addEventListener('click', () => {
+            const next = !localStorage.getItem(KEY);
+            setLight(next);
+        });
+        if (localStorage.getItem(KEY)) setLight(true);
+
+        // ===== Simple filter =====
+        const filterBtns = document.querySelectorAll('[data-filter]');
+        const cards = [...document.querySelectorAll('.project')];
+        filterBtns.forEach(btn => btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+            btn.setAttribute('aria-selected', 'true');
+            const tag = btn.dataset.filter;
+            cards.forEach(c => {
+                const show = tag === 'all' || c.dataset.tags.includes(tag);
+                c.style.display = show ? 'block' : 'none';
+            });
+        }));
+
+        // ===== Testimonials slider =====
+        const t = [document.getElementById('t1'), document.getElementById('t2'), document.getElementById('t3')];
+        let ti = 0;
+        const showT = i => { t.forEach((x, j) => x.classList.toggle('active', j === i)); }
+        document.getElementById('prevTesti').onclick = () => { ti = (ti - 1 + t.length) % t.length; showT(ti) }
+        document.getElementById('nextTesti').onclick = () => { ti = (ti + 1) % t.length; showT(ti) }
+
+        // ===== Contact form => open mailto with content =====
+        const f = document.getElementById('contactForm');
+        const msg = document.getElementById('formMsg');
+        f.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = new FormData(f);
+            const name = data.get('name').trim();
+            const email = data.get('email').trim();
+            const type = data.get('type');
+            const message = data.get('message').trim();
+            if (!name || !email || !type || !message) {
+                msg.textContent = 'Please complete all fields.'; return;
+            }
+            const subject = encodeURIComponent(`[Freelance] ${type} — ${name}`);
+            const body = encodeURIComponent(`Hello,
+
+Name: ${name}
+Email: ${email}
+Project Type: ${type}
+
+Needs:
+${message}
+
+Sent from portfolio.`);
+            window.location.href = `mailto:ejajakwe@gmail.com?subject=${subject}&body=${body}`;
+            msg.textContent = 'Opening your email client…';
+        });
+
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Basic scrollspy (header links)
+        const sections = ['home', 'about', 'skills', 'services', 'portfolio', 'experience', 'contact'].map(id => document.getElementById(id));
+        const links = [...document.querySelectorAll('.nav-links a')];
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    links.forEach(a => a.removeAttribute('aria-current'));
+                    const id = entry.target.id; const active = links.find(a => a.getAttribute('href') === '#' + id); if (active) active.setAttribute('aria-current', 'page');
+                }
+            })
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: .1 });
+        sections.forEach(sec => io.observe(sec));
+    </script>
+</body>
+
+</html>
